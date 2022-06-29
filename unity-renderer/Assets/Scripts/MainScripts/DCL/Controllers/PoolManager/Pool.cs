@@ -63,6 +63,7 @@ namespace DCL
                 return;
 
             int objectsToInstantiate = Mathf.Max(0, maxPrewarmCount - objectsCount);
+
             for (int i = 0; i < objectsToInstantiate; i++)
             {
                 Instantiate();
@@ -97,6 +98,7 @@ namespace DCL
 
             EnablePoolableObject(poolable);
             poolable.OnPoolGet();
+
             return poolable;
         }
 
@@ -116,6 +118,7 @@ namespace DCL
         public PoolableObject Instantiate()
         {
             var gameObject = InstantiateAsOriginal();
+
             return SetupPoolableObject(gameObject);
         }
 
@@ -193,6 +196,7 @@ namespace DCL
             if (instantiator != null && !instantiator.IsValid(gameObject))
             {
                 Debug.LogError($"ERROR: Trying to add invalid gameObject to pool! -- {gameObject.name}", gameObject);
+
                 return;
             }
 
@@ -201,6 +205,7 @@ namespace DCL
             if (obj != null)
             {
                 Debug.LogError($"ERROR: gameObject is already being tracked by a pool! -- {gameObject.name}", gameObject);
+
                 return;
             }
 
@@ -309,6 +314,7 @@ namespace DCL
             if (PoolManager.i.poolables.TryGetValue(gameObject, out PoolableObject poolable))
             {
                 pool = poolable.pool;
+
                 return true;
             }
 
