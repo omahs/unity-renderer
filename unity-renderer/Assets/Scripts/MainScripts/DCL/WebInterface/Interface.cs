@@ -1627,7 +1627,11 @@ namespace DCL.Interface
             SendMessage("RequestUserProfile", stringPayload);
         }
 
-        public static void ReportAvatarFatalError() { SendMessage("ReportAvatarFatalError"); }
+        public static void ReportAvatarFatalError()
+        {
+            Debug.LogException(new Exception("This is but a test!"));
+            SendMessage("ReportAvatarFatalError");
+        }
 
         public static void UnpublishScene(Vector2Int sceneCoordinates)
         {
