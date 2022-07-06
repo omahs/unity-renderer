@@ -1629,7 +1629,6 @@ namespace DCL.Interface
 
         public static void ReportAvatarFatalError()
         {
-            Debug.LogException(new Exception("This is but a test!"));
             SendMessage("ReportAvatarFatalError");
         }
 
