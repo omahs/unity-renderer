@@ -22,25 +22,38 @@ install_proto()
     echo "${PROTOC_PATH}" # Return protoc path
 }
 
+OUTPUT_PATH=$(pwd)/../unity-renderer/Assets/Scripts/MainScripts/DCL/WorldRuntime/KernelCommunication/RPC/GeneratedCode/
+
 mkdir -p temp && cd temp
 PROTOC=$(install_proto)
-npm install @dcl/protocol@next
+npm init -y
+npm install "https://sdk-team-cdn.decentraland.org/@dcl/protocol/branch//dcl-protocol-1.0.0-2663517066.commit-255ebaf.tgz"
 npm install protoc-gen-dclunity@next
 
-RENDERER_PROTOCOL_PATH=node_modules/@dcl/protocol/renderer-protocol/
-CODEGEN_PLUGIN_PATH=node_modules/protoc-gen-dclunity/dist/index.js
-OUTPUT_PATH=unity-renderer/Assets/Scripts/MainScripts/DCL/WorldRuntime/KernelCommunication/RPC/GeneratedCode/
+RENDERER_PROTOCOL_PATH=$(pwd)/node_modules/@dcl/protocol/renderer-protocol
+CODEGEN_PLUGIN_PATH=$(pwd)/node_modules/protoc-gen-dclunity/dist/index.js
 mkdir -p ${OUTPUT_PATH}
 
 
 PROTOS=$(find "${RENDERER_PROTOCOL_PATH}" -name '*.proto' -print)
 
-echo "Generating: "
-echo ${PROTOS}
+chmod +x ${CODEGEN_PLUGIN_PATH}
 
-PROTOC \
-    --plugin=protoc-gen-dclunity="${CODEGEN_PLUGIN_PATH}" \
-    --dclunity_out="${OUTPUT_PATH}" \
-    --csharp_out="${OUTPUT_PATH}" \
-    --csharp_opt=file_extension=.gen.cs \
-    "${PROTOS}"
+echo "Generating: "
+
+for PROTO in ${PROTOS[@]}
+do
+    : 
+    echo "Generating: ${PROTO}"
+    PROTOC \
+        --plugin=protoc-gen-dclunity="${CODEGEN_PLUGIN_PATH}" \
+        --dclunity_out="${OUTPUT_PATH}" \
+        --csharp_out="${OUTPUT_PATH}" \
+        --csharp_opt=file_extension=.gen.cs \
+        -I${RENDERER_PROTOCOL_PATH} \
+        -I${OUTPUT_PATH} \
+        "${PROTO}"
+
+    echo "Done, output: ${OUTPUT_PATH}"
+    echo ""
+done
