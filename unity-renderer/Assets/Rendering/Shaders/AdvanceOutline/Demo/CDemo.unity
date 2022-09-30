@@ -170,13 +170,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ActivationMethod: 0
-  m_OutlineRenderMethod: 0
+  m_OutlineRenderMethod: 1
   m_isOutlineConstant: 0
-  m_OutlineColor: {r: 0, g: 1, b: 0, a: 1}
-  m_OutlineWidth: 2
-  m_OutlineAmount: 1
+  m_OutlineColor: {r: 0, g: 0.7002697, b: 1, a: 1}
+  m_OutlineWidth: 8
+  m_OutlineAmount: 0.164
   m_OverlayColor: {r: 0, g: 0, b: 0, a: 1}
-  m_OverlayAmount: 1
+  m_OverlayAmount: 0.556
   m_VertexColorRedChannel: 0
   m_ShaderOutline: {fileID: 4800000, guid: 7b9b9f26378ac574f9d027fbc192cf78, type: 3}
   isMaterialParmsRuntime: 1
@@ -355,11 +355,11 @@ MonoBehaviour:
   m_ActivationMethod: 0
   m_OutlineRenderMethod: 0
   m_isOutlineConstant: 0
-  m_OutlineColor: {r: 0, g: 1, b: 0, a: 1}
+  m_OutlineColor: {r: 1, g: 0, b: 0.253829, a: 1}
   m_OutlineWidth: 2
   m_OutlineAmount: 1
-  m_OverlayColor: {r: 0, g: 0, b: 0, a: 1}
-  m_OverlayAmount: 1
+  m_OverlayColor: {r: 0.21477994, g: 0.990566, b: 0.098122105, a: 1}
+  m_OverlayAmount: 0.584
   m_VertexColorRedChannel: 0
   m_ShaderOutline: {fileID: 4800000, guid: 7b9b9f26378ac574f9d027fbc192cf78, type: 3}
   isMaterialParmsRuntime: 1
@@ -569,13 +569,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ActivationMethod: 0
-  m_OutlineRenderMethod: 0
+  m_OutlineRenderMethod: 3
   m_isOutlineConstant: 0
   m_OutlineColor: {r: 0, g: 1, b: 0, a: 1}
   m_OutlineWidth: 2
   m_OutlineAmount: 1
-  m_OverlayColor: {r: 0, g: 0, b: 0, a: 1}
-  m_OverlayAmount: 1
+  m_OverlayColor: {r: 1, g: 0.54467595, b: 0, a: 1}
+  m_OverlayAmount: 0.541
   m_VertexColorRedChannel: 0
   m_ShaderOutline: {fileID: 4800000, guid: 7b9b9f26378ac574f9d027fbc192cf78, type: 3}
   isMaterialParmsRuntime: 1
@@ -689,13 +689,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ActivationMethod: 0
-  m_OutlineRenderMethod: 0
+  m_OutlineRenderMethod: 2
   m_isOutlineConstant: 0
   m_OutlineColor: {r: 0, g: 1, b: 0, a: 1}
   m_OutlineWidth: 2
-  m_OutlineAmount: 1
+  m_OutlineAmount: 0.145
   m_OverlayColor: {r: 0, g: 0, b: 0, a: 1}
-  m_OverlayAmount: 1
+  m_OverlayAmount: 0
   m_VertexColorRedChannel: 0
   m_ShaderOutline: {fileID: 4800000, guid: 7b9b9f26378ac574f9d027fbc192cf78, type: 3}
   isMaterialParmsRuntime: 1
@@ -1223,11 +1223,11 @@ MonoBehaviour:
   m_ActivationMethod: 0
   m_OutlineRenderMethod: 0
   m_isOutlineConstant: 0
-  m_OutlineColor: {r: 0, g: 1, b: 0, a: 1}
+  m_OutlineColor: {r: 0, g: 0.10661459, b: 1, a: 1}
   m_OutlineWidth: 2
-  m_OutlineAmount: 1
-  m_OverlayColor: {r: 0, g: 0, b: 0, a: 1}
-  m_OverlayAmount: 1
+  m_OutlineAmount: 0.137
+  m_OverlayColor: {r: 1, g: 0, b: 0, a: 1}
+  m_OverlayAmount: 0.592
   m_VertexColorRedChannel: 0
   m_ShaderOutline: {fileID: 4800000, guid: 7b9b9f26378ac574f9d027fbc192cf78, type: 3}
   isMaterialParmsRuntime: 1
@@ -1483,12 +1483,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ActivationMethod: 0
-  m_OutlineRenderMethod: 0
+  m_OutlineRenderMethod: 2
   m_isOutlineConstant: 0
-  m_OutlineColor: {r: 0, g: 1, b: 0, a: 1}
-  m_OutlineWidth: 2
+  m_OutlineColor: {r: 0, g: 0.08090782, b: 1, a: 1}
+  m_OutlineWidth: 6
   m_OutlineAmount: 1
-  m_OverlayColor: {r: 0, g: 0, b: 0, a: 1}
+  m_OverlayColor: {r: 0.36520195, g: 0, b: 1, a: 1}
   m_OverlayAmount: 1
   m_VertexColorRedChannel: 0
   m_ShaderOutline: {fileID: 4800000, guid: 7b9b9f26378ac574f9d027fbc192cf78, type: 3}
@@ -1607,10 +1607,10 @@ MonoBehaviour:
   m_OutlineRenderMethod: 0
   m_isOutlineConstant: 0
   m_OutlineColor: {r: 0, g: 1, b: 0, a: 1}
-  m_OutlineWidth: 2
+  m_OutlineWidth: 4
   m_OutlineAmount: 1
   m_OverlayColor: {r: 0, g: 0, b: 0, a: 1}
-  m_OverlayAmount: 1
+  m_OverlayAmount: 0
   m_VertexColorRedChannel: 0
   m_ShaderOutline: {fileID: 4800000, guid: 7b9b9f26378ac574f9d027fbc192cf78, type: 3}
   isMaterialParmsRuntime: 1
@@ -1759,13 +1759,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ActivationMethod: 0
-  m_OutlineRenderMethod: 0
+  m_OutlineRenderMethod: 1
   m_isOutlineConstant: 0
-  m_OutlineColor: {r: 0, g: 1, b: 0, a: 1}
+  m_OutlineColor: {r: 1, g: 0, b: 0.20994282, a: 1}
   m_OutlineWidth: 2
   m_OutlineAmount: 1
-  m_OverlayColor: {r: 0, g: 0, b: 0, a: 1}
-  m_OverlayAmount: 1
+  m_OverlayColor: {r: 0.05958529, g: 0.9176127, b: 0.9716981, a: 1}
+  m_OverlayAmount: 0
   m_VertexColorRedChannel: 0
   m_ShaderOutline: {fileID: 4800000, guid: 7b9b9f26378ac574f9d027fbc192cf78, type: 3}
   isMaterialParmsRuntime: 1
@@ -2039,10 +2039,10 @@ MonoBehaviour:
   m_ActivationMethod: 0
   m_OutlineRenderMethod: 0
   m_isOutlineConstant: 0
-  m_OutlineColor: {r: 0, g: 1, b: 0, a: 1}
-  m_OutlineWidth: 2
-  m_OutlineAmount: 1
-  m_OverlayColor: {r: 0, g: 0, b: 0, a: 1}
+  m_OutlineColor: {r: 1, g: 0, b: 0.28652763, a: 1}
+  m_OutlineWidth: 4
+  m_OutlineAmount: 0.236
+  m_OverlayColor: {r: 0, g: 0.08817577, b: 1, a: 1}
   m_OverlayAmount: 1
   m_VertexColorRedChannel: 0
   m_ShaderOutline: {fileID: 4800000, guid: 7b9b9f26378ac574f9d027fbc192cf78, type: 3}
