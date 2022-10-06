@@ -53,7 +53,7 @@ public class PlayerName : MonoBehaviour, IPlayerName
     public void SetName(string name) { AsyncSetName(name).Forget(); }
     private async UniTaskVoid AsyncSetName(string name)
     {
-        name = await ProfanityFilterSharedInstances.regexFilter.Filter(name);
+        name = await FilterName(name);
         nameText.text = name;
         background.rectTransform.sizeDelta = new Vector2(nameText.GetPreferredValues().x + BACKGROUND_EXTRA_WIDTH, BACKGROUND_HEIGHT);
     }
@@ -185,6 +185,18 @@ public class PlayerName : MonoBehaviour, IPlayerName
             return FAR_Y_OFFSET;
 
         return Mathf.Lerp(NEAR_Y_OFFSET, FAR_Y_OFFSET, distanceToCamera / MAX_DISTANCE);
+    }
+
+    private async UniTask<string> FilterName(string name)
+    {
+        return IsProfanityFilteringEnabled()
+            ? await ProfanityFilterSharedInstances.regexFilter.Filter(name)
+            : name;
+    }
+
+    private bool IsProfanityFilteringEnabled()
+    {
+        return DataStore.i.settings.profanityChatFilteringEnabled.Get();
     }
 
     private void OnDestroy()
