@@ -42,10 +42,9 @@ public class PlayerName : MonoBehaviour, IPlayerName
     {
         backgroundOriginalColor = background.color;
         canvas.sortingOrder = DEFAULT_CANVAS_SORTING_ORDER;
+        profanityFilterEnabled = DataStore.i.settings.profanityChatFilteringEnabled;
         namesVisible.OnChange += OnNamesVisibleChanged;
         namesOpacity.OnChange += OnNamesOpacityChanged;
-        profanityFilterEnabled = DataStore.i.settings.profanityChatFilteringEnabled;
-
         profanityFilterEnabled.OnChange += OnProfanityFilterChanged;
         
         OnNamesVisibleChanged(namesVisible.Get(), true);
