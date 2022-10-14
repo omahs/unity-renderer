@@ -29,12 +29,14 @@ public class PlayerName : MonoBehaviour, IPlayerName
 
     internal BaseVariable<float> namesOpacity => DataStore.i.HUDs.avatarNamesOpacity;
     internal BaseVariable<bool> namesVisible => DataStore.i.HUDs.avatarNamesVisible;
+    internal BaseVariable<bool> profanityFilterEnabled;
 
     internal float alpha;
     internal float targetAlpha;
     internal bool forceShow = false;
     internal Color backgroundOriginalColor;
     internal List<string> hideConstraints = new List<string>();
+    internal string currentName = "";
 
     private void Awake()
     {
@@ -42,6 +44,10 @@ public class PlayerName : MonoBehaviour, IPlayerName
         canvas.sortingOrder = DEFAULT_CANVAS_SORTING_ORDER;
         namesVisible.OnChange += OnNamesVisibleChanged;
         namesOpacity.OnChange += OnNamesOpacityChanged;
+        profanityFilterEnabled = DataStore.i.settings.profanityChatFilteringEnabled;
+
+        profanityFilterEnabled.OnChange += OnProfanityFilterChanged;
+        
         OnNamesVisibleChanged(namesVisible.Get(), true);
         OnNamesOpacityChanged(namesOpacity.Get(), 1);
         Show(true);
@@ -49,11 +55,12 @@ public class PlayerName : MonoBehaviour, IPlayerName
     internal void OnNamesOpacityChanged(float current, float previous) { background.color = new Color(backgroundOriginalColor.r, backgroundOriginalColor.g, backgroundOriginalColor.b, current); }
 
     internal void OnNamesVisibleChanged(bool current, bool previous) { canvas.enabled = current || forceShow; }
-
+    private void OnProfanityFilterChanged(bool current, bool previous) { SetName(currentName); }
     public void SetName(string name) { AsyncSetName(name).Forget(); }
     private async UniTaskVoid AsyncSetName(string name)
     {
-        name = await FilterName(name);
+        currentName = name;
+        name = await FilterName(currentName);
         nameText.text = name;
         background.rectTransform.sizeDelta = new Vector2(nameText.GetPreferredValues().x + BACKGROUND_EXTRA_WIDTH, BACKGROUND_HEIGHT);
     }
@@ -203,5 +210,6 @@ public class PlayerName : MonoBehaviour, IPlayerName
     {
         namesVisible.OnChange -= OnNamesVisibleChanged;
         namesOpacity.OnChange -= OnNamesOpacityChanged;
+        profanityFilterEnabled.OnChange -= OnProfanityFilterChanged;
     }
 }
