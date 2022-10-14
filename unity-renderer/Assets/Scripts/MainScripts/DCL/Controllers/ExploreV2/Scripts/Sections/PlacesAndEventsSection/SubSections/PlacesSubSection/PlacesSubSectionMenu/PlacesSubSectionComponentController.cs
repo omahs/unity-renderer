@@ -21,7 +21,8 @@ public interface IPlacesSubSectionComponentController : IDisposable
     /// <summary>
     /// Load the places with the last requested ones.
     /// </summary>
-    void LoadPlaces();
+    /// <param name="placeList"></param>
+    void LoadPlaces(List<HotSceneInfo> placeList);
 
     /// <summary>
     /// Increment the number of places loaded.
@@ -32,7 +33,6 @@ public interface IPlacesSubSectionComponentController : IDisposable
 public class PlacesSubSectionComponentController : IPlacesSubSectionComponentController
 {
     public event Action OnCloseExploreV2;
-    internal event Action OnPlacesFromAPIUpdated;
 
     internal const int INITIAL_NUMBER_OF_ROWS = 5;
     internal const int SHOW_MORE_ROWS_INCREMENT = 3;
@@ -59,7 +59,6 @@ public class PlacesSubSectionComponentController : IPlacesSubSectionComponentCon
         this.view.OnShowMorePlacesClicked += ShowMorePlaces;
 
         placesAPIApiController = placesAPI;
-        OnPlacesFromAPIUpdated += OnRequestedPlacesUpdated;
 
         friendsTrackerController = new FriendTrackerController(friendsController, view.currentFriendColors);
 
@@ -106,29 +105,23 @@ public class PlacesSubSectionComponentController : IPlacesSubSectionComponentCon
         if (!DataStore.i.exploreV2.isInShowAnimationTransiton.Get())
             RequestAllPlacesFromAPI();
         else
-            DataStore.i.exploreV2.isInShowAnimationTransiton.OnChange += IsInShowAnimationTransitonChanged;
+            DataStore.i.exploreV2.isInShowAnimationTransiton.OnChange += DelayedRequestAllPlacesFromAPI;
     }
 
-    internal void IsInShowAnimationTransitonChanged(bool current, bool previous)
+    private void DelayedRequestAllPlacesFromAPI(bool current, bool previous)
     {
-        DataStore.i.exploreV2.isInShowAnimationTransiton.OnChange -= IsInShowAnimationTransitonChanged;
+        DataStore.i.exploreV2.isInShowAnimationTransiton.OnChange -= DelayedRequestAllPlacesFromAPI;
         RequestAllPlacesFromAPI();
     }
 
     internal void RequestAllPlacesFromAPI()
     {
-        placesAPIApiController.GetAllPlaces(
-            (placeList) =>
-            {
-                placesFromAPI = placeList;
-                OnPlacesFromAPIUpdated?.Invoke();
-            });
+        placesAPIApiController.GetAllPlaces(OnCompleted: LoadPlaces);
     }
 
-    internal void OnRequestedPlacesUpdated() { LoadPlaces(); }
-
-    public void LoadPlaces()
+    public void LoadPlaces(List<HotSceneInfo> placeList)
     {
+        placesFromAPI = placeList;
         friendsTrackerController.RemoveAllHandlers();
 
         List<PlaceCardComponentModel> places = new List<PlaceCardComponentModel>();
@@ -138,7 +131,7 @@ public class PlacesSubSectionComponentController : IPlacesSubSectionComponentCon
             PlaceCardComponentModel placeCardModel = ExplorePlacesUtils.CreatePlaceCardModelFromAPIPlace(receivedPlace);
             places.Add(placeCardModel);
         }
-
+        
         view.SetPlaces(places);
         view.SetShowMorePlacesButtonActive(currentPlacesShowed < placesFromAPI.Count);
         view.SetPlacesAsLoading(false);
@@ -179,7 +172,6 @@ public class PlacesSubSectionComponentController : IPlacesSubSectionComponentCon
         view.OnPlacesSubSectionEnable -= RequestAllPlaces;
         view.OnFriendHandlerAdded -= View_OnFriendHandlerAdded;
         view.OnShowMorePlacesClicked -= ShowMorePlaces;
-        OnPlacesFromAPIUpdated -= OnRequestedPlacesUpdated;
         DataStore.i.exploreV2.isOpen.OnChange -= OnExploreV2Open;
     }
 
